@@ -6,7 +6,7 @@ ENV DOWNLOAD_URL http://download.eclipse.org/technology/epp/downloads/release/ma
 ENV INSTALLATION_DIR /usr/local/ 
 
 RUN apt-get update \
- && apt-get install -y software-properties-common curl \
+ && apt-get install -y software-properties-common curl openssh-server \
  \
  && apt-add-repository -y ppa:webupd8team/java \
  && apt-get update \
@@ -16,11 +16,12 @@ RUN apt-get update \
  \
  && curl "$DOWNLOAD_URL" | tar vxz -C $INSTALLATION_DIR \
  && adduser --disabled-password --quiet --gecos '' eclipse \
+ && echo 'eclipse:screencast' | chpasswd \
  && chown -R root:eclipse $INSTALLATION_DIR/eclipse \
  && chmod -R 775 $INSTALLATION_DIR/eclipse \
  \
  && apt-get --purge autoremove -y software-properties-common curl \
  && apt-get clean
 
-USER eclipse
+# USER eclipse
 # ENTRYPOINT $INSTALLATION_DIR/eclipse/eclipse
