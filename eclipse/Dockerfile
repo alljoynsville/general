@@ -13,7 +13,7 @@ RUN apt-get update \
  && echo 'eclipse:changemeonfirstlaunch' | chpasswd \
  && chown -R root:eclipse $INSTALLATION_DIR/eclipse \
  && chmod -R 775 $INSTALLATION_DIR/eclipse \
- && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/
+ && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
