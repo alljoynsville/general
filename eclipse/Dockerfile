@@ -6,7 +6,7 @@ ENV DOWNLOAD_URL http://download.eclipse.org/technology/epp/downloads/release/ma
 ENV INSTALLATION_DIR /usr/local/ 
 
 RUN apt-get update \
- && apt-get install -y curl openssh-server xorg libgtk2.0-0 \
+ && apt-get install -y curl openssh-server xorg libgtk2.0-0 libssl-dev build-essential scons subversion git-core valgrind cmake \
  && mkdir /var/run/sshd \
  && curl "$DOWNLOAD_URL" | tar vxz -C $INSTALLATION_DIR \
  && adduser --disabled-password --quiet --gecos '' eclipse \
