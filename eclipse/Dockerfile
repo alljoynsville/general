@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM alljoynsville/oracle-jdk8
 
 MAINTAINER alljoynsville
 
@@ -6,22 +6,14 @@ ENV DOWNLOAD_URL http://download.eclipse.org/technology/epp/downloads/release/ma
 ENV INSTALLATION_DIR /usr/local/ 
 
 RUN apt-get update \
- && apt-get install -y software-properties-common curl openssh-server \
- \
- && apt-add-repository -y ppa:webupd8team/java \
- && apt-get update \
- && echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections \
- && echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections \
- && apt-get install -y oracle-java8-set-default \
- \
+ && apt-get install -y curl openssh-server xorg libgtk2.0-0 \
+ && mkdir /var/run/sshd \
  && curl "$DOWNLOAD_URL" | tar vxz -C $INSTALLATION_DIR \
  && adduser --disabled-password --quiet --gecos '' eclipse \
- && echo 'eclipse:screencast' | chpasswd \
+ && echo 'eclipse:changemeonfirstlaunch' | chpasswd \
  && chown -R root:eclipse $INSTALLATION_DIR/eclipse \
  && chmod -R 775 $INSTALLATION_DIR/eclipse \
- \
- && apt-get --purge autoremove -y software-properties-common curl \
- && apt-get clean
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# USER eclipse
-# ENTRYPOINT $INSTALLATION_DIR/eclipse/eclipse
+CMD ["/usr/sbin/sshd", "-D"]
