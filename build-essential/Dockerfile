@@ -12,4 +12,5 @@ RUN apt-get update && \
 
 WORKDIR  /builder
 USER builder
+CMD ["/bin/bash"]
 
