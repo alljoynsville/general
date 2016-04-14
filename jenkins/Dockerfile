@@ -6,5 +6,6 @@ RUN apt-get update && \
     echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get -y install docker-engine && \
+    usermod -aG docker jenkins
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
