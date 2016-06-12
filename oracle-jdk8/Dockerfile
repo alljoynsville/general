@@ -3,7 +3,6 @@ FROM ubuntu:trusty
 MAINTAINER alljoynsville
 
 RUN apt-get update \
- && apt-get -yqq dist-upgrade \
  && apt-get install -yqq software-properties-common \
  && apt-add-repository -y ppa:webupd8team/java \
  && apt-get -qq update \
