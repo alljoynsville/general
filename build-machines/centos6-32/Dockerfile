@@ -1,6 +1,6 @@
 FROM centos:6.8
 
-RUN yum -y -q install glibc.i686 glibc-devel.i686 libstdc++.i686 libstdc++-devel.i686 zlib.i686 vim && \
+RUN yum -y -q install glibc.i686 glibc-devel.i686 libstdc++.i686 libstdc++-devel.i686 zlib.i686 glibc-devel.x86_64 vim && \
     yum -y -q groupinstall "Development tools" && \
     adduser builder
 
