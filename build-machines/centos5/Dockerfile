@@ -1,6 +1,6 @@
 FROM centos:5
 
-RUN yum -y -q install ncurses-devel makedepend vim wget && \
+RUN yum -y -q install elfutils-libelf ncurses-devel makedepend vim wget && \
     yum -y -q groupinstall "Development tools" && \
     adduser builder
 
