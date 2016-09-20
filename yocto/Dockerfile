@@ -6,7 +6,7 @@ RUN apt-get update && \
       subversion wget unzip python vim && \
     apt-get clean && \
     useradd -m builder && \
-    echo 'builder ALL=NOPASSWD: ALL' > /etc/sudoers.d/openwrt
+    echo 'builder ALL=NOPASSWD: ALL' > /etc/sudoers.d/builder
 RUN sudo -iu builder git clone git://git.yoctoproject.org/poky
 USER builder
 WORKDIR /home/builder
