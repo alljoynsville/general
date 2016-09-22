@@ -7,6 +7,8 @@ RUN apt-get update && \
     apt-get clean && \
     useradd -m builder && \
     echo 'builder ALL=NOPASSWD: ALL' > /etc/sudoers.d/builder
-RUN sudo -iu builder git clone git://git.yoctoproject.org/poky
 USER builder
 WORKDIR /home/builder
+RUN git clone git://git.yoctoproject.org/poky
+RUN cd poky && git checkout krogoth && sudo pip install -r /home/builder/poky/bitbake/toaster-requirements.txt
+
