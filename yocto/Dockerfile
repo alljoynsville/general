@@ -10,5 +10,5 @@ RUN apt-get update && \
 USER builder
 WORKDIR /home/builder
 RUN git clone git://git.yoctoproject.org/poky
-RUN cd poky && git checkout krogoth && sudo pip install -r /home/builder/poky/bitbake/toaster-requirements.txt
+RUN cd poky && git checkout jethro && sudo pip install -r /home/builder/poky/bitbake/toaster-requirements.txt
 
