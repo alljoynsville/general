@@ -7,10 +7,10 @@ RUN apt-get update && \
 	apt-get -y upgrade && \
 	apt-get -y install less wget vim python build-essential subversion libncurses5-dev unzip zlib1g-dev gawk gcc-multilib flex git-core gettext libssl-dev && \
 	apt-get clean && \
-	useradd  --create-home --home-dir /builder --shell /bin/bash builder && \
+	useradd -m builder && \
+	echo 'builder ALL=NOPASSWD: ALL' > /etc/sudoers.d/builder && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-WORKDIR  /builder
 USER builder
+WORKDIR  /home/builder
 CMD ["/bin/bash"]
-
