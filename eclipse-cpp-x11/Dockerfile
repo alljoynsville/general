@@ -6,15 +6,15 @@ ENV DOWNLOAD_URL http://download.eclipse.org/technology/epp/downloads/release/ne
 ENV INSTALLATION_DIR /usr/local
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq update \
- && DEBIAN_FRONTEND=noninteractive apt-get -yqq install vim curl wget openssh-server xorg libgtk2.0-0 libssl-dev build-essential scons sudo \
-    subversion git-core valgrind cmake default-jre \
+ && DEBIAN_FRONTEND=noninteractive apt-get -yqq install vim curl wget openssh-server xorg libgtk2.0-0 libssl-dev \
+    build-essential scons sudo python python-pip subversion git-core valgrind cmake default-jre \
  && mkdir /var/run/sshd \
- && useradd -m eclipse \
+ && useradd -m eclipse -s /bin/bash \
  && echo 'eclipse ALL=NOPASSWD: ALL' > /etc/sudoers.d/eclipse \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
-RUN curl "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
+RUN curl -s -L "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
  && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ \
  && chown -R root:eclipse $INSTALLATION_DIR/eclipse \
  && chmod -R 775 $INSTALLATION_DIR/eclipse
