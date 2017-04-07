@@ -14,9 +14,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
-#RUN curl "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
-# && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ \
-# && chown -R root:eclipse $INSTALLATION_DIR/eclipse \
-# && chmod -R 775 $INSTALLATION_DIR/eclipse
+RUN curl "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
+ && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ \
+ && chown -R root:eclipse $INSTALLATION_DIR/eclipse \
+ && chmod -R 775 $INSTALLATION_DIR/eclipse
 
 CMD ["/usr/sbin/sshd", "-D"]
