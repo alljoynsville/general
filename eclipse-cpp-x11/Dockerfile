@@ -9,13 +9,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq update \
  && DEBIAN_FRONTEND=noninteractive apt-get -yqq install vim curl wget openssh-server xorg libgtk2.0-0 libssl-dev build-essential scons sudo \
     subversion git-core valgrind cmake default-jre \
  && mkdir /var/run/sshd \
- && curl "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
  && useradd -m eclipse \
  && echo 'eclipse ALL=NOPASSWD: ALL' > /etc/sudoers.d/eclipse \
- && chown -R root:eclipse $INSTALLATION_DIR/eclipse \
- && chmod -R 775 $INSTALLATION_DIR/eclipse \
- && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ 
+#RUN curl "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
+# && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ \
+# && chown -R root:eclipse $INSTALLATION_DIR/eclipse \
+# && chmod -R 775 $INSTALLATION_DIR/eclipse
 
 CMD ["/usr/sbin/sshd", "-D"]
