@@ -24,7 +24,7 @@ RUN echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 RUN curl -s -L "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
  && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ 
 
-RUN eclipse -clean -purgeHistory -application org.eclipse.equinox.p2.director -noSplash -repository http://download.eclipse.org/technology/subversive/4.0/update-site/,http://community.polarion.com/projects/subversive/download/eclipse/6.0/neon-site/  -installIUs org.eclipse.team.svn.feature.group,org.polarion.eclipse.team.svn.connector.feature.group,org.eclipse.cdt.testsrunner.feature.feature.group,org.polarion.eclipse.team.svn.connector.svnkit18.feature.group, -vmargs -Declipse.p2.mirrors=true -Djava.net.preferIPv4Stack=true
+RUN eclipse -clean -purgeHistory -application org.eclipse.equinox.p2.director -noSplash -repository http://download.eclipse.org/technology/subversive/4.0/update-site/,http://community.polarion.com/projects/subversive/download/eclipse/6.0/neon-site/  -installIUs org.eclipse.team.svn.feature.group,org.polarion.eclipse.team.svn.connector.feature.group,org.eclipse.cdt.testsrunner.feature.feature.group,org.polarion.eclipse.team.svn.connector.svnkit18.feature.group -vmargs -Declipse.p2.mirrors=true -Djava.net.preferIPv4Stack=true
 
 RUN chown -R eclipse:eclipse $INSTALLATION_DIR/eclipse &&\
   chmod -R 775 $INSTALLATION_DIR/eclipse
