@@ -9,7 +9,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq update \
  && DEBIAN_FRONTEND=noninteractive apt-get -yqq install openssh-server xorg libgtk2.0-0 default-jre \
     build-essential scons valgrind cmake gcc-multilib ccache quilt libncurses5-dev zlib1g-dev libssl-dev \
     sudo vim curl wget unzip python python-pip gawk flex gettext libcurl4-openssl-dev libmosquitto-dev \
-    mosquitto-dev libjson-c-dev subversion libboost-regex-dev git-core locales\
+    mosquitto-dev libjson-c-dev subversion libboost-regex-dev git-core locales mc \
  && mkdir /var/run/sshd \
  && useradd -m eclipse -s /bin/bash -u 1001 \
  && echo 'eclipse ALL=NOPASSWD: ALL' > /etc/sudoers.d/eclipse \
