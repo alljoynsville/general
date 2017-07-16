@@ -1,8 +1,8 @@
-from ubuntu:xenial
+from ubuntu:zesty
 
 MAINTAINER alljoynsville
 
-ENV DOWNLOAD_URL http://download.eclipse.org/technology/epp/downloads/release/neon/3/eclipse-cpp-neon-3-linux-gtk-x86_64.tar.gz
+ENV DOWNLOAD_URL http://ftp.heanet.ie/pub/eclipse//technology/epp/downloads/release/oxygen/R/eclipse-cpp-oxygen-R-linux-gtk-x86_64.tar.gz 
 ENV INSTALLATION_DIR /usr/local
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq update \
@@ -24,7 +24,7 @@ RUN echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 RUN curl -s -L "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
  && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ 
 
-RUN eclipse -clean -purgeHistory -application org.eclipse.equinox.p2.director -noSplash -repository http://download.eclipse.org/releases/neon/,http://download.eclipse.org/technology/subversive/4.0/update-site/,http://community.polarion.com/projects/subversive/download/eclipse/6.0/neon-site/  -installIUs org.eclipse.team.svn.feature.group,org.polarion.eclipse.team.svn.connector.feature.group,org.eclipse.cdt.testsrunner.feature.feature.group,org.polarion.eclipse.team.svn.connector.svnkit18.feature.group -vmargs -Declipse.p2.mirrors=true -Djava.net.preferIPv4Stack=true
+RUN eclipse -clean -purgeHistory -application org.eclipse.equinox.p2.director -noSplash -repository  http://boothen.github.io/Json-Eclipse-Plugin/,http://www.cpupk.com/decompiler/update/,http://community.polarion.com/projects/subversive/download/eclipse/6.0/update-site/,http://download.eclipse.org/technology/subversive/4.0/update-site/,http://download.eclipse.org/releases/oxygen/ -installIUs org.sf.feeling.decompiler.feature.group,org.eclipse.linuxtools.valgrind.feature.group,jsonedit-feature.feature.group,org.eclipse.team.svn.feature.group,org.polarion.eclipse.team.svn.connector.feature.group,org.eclipse.cdt.testsrunner.feature.feature.group,org.polarion.eclipse.team.svn.connector.svnkit18.feature.group -vmargs -Declipse.p2.mirrors=true -Djava.net.preferIPv4Stack=true 
 
 RUN chown -R eclipse:eclipse $INSTALLATION_DIR/eclipse &&\
   chmod -R 775 $INSTALLATION_DIR/eclipse
