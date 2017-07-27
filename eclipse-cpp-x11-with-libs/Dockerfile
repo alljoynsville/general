@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq update \
     sudo vim curl wget unzip python python-pip gawk flex gettext libcurl4-openssl-dev libmosquitto-dev \
     mosquitto-dev libjson-c-dev subversion libboost-regex-dev git-core locales mc tcpdump\
  && mkdir /var/run/sshd \
- && useradd -m eclipse -s /bin/bash -u 1001 \
+ && useradd -m eclipse -s /bin/bash -u 1001 -G dialoout\
  && echo 'eclipse ALL=NOPASSWD: ALL' > /etc/sudoers.d/eclipse \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
