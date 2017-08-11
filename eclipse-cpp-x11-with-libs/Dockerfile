@@ -19,7 +19,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq update \
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-RUN mkdir /etc/cloudofthings/
 RUN echo "X11UseLocalhost no" >> /etc/ssh/sshd_config 
 RUN curl -s -L "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
  && ln -s $INSTALLATION_DIR/eclipse/eclipse /usr/bin/ 
