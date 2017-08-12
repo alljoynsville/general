@@ -25,4 +25,6 @@ RUN curl -s -L "$DOWNLOAD_URL" | tar xz -C $INSTALLATION_DIR/ \
  && chown -R eclipse:eclipse $INSTALLATION_DIR/eclipse \
  && chmod -R 775 $INSTALLATION_DIR/eclipse
 
+RUN echo "X11UseLocalhost no" >> /etc/ssh/sshd_config 
+
 CMD ["/usr/sbin/sshd", "-D"]
